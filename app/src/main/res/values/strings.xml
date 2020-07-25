@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WiFiestaMovies</string>
+    <string name="title_asc">Ascending title</string>
+    <string name="title_desc">Descending Title</string>
+    <string name="date_asc">Ascending Date</string>
+    <string name="date_desc">Descending Date</string>
+    <string name="popularity_asc">Ascending Popularity</string>
+    <string name="popularity_desc">Descending Popularity</string>
+    <string name="select_sort">Select sort</string>
+    <string name="search">Search</string>
+    <string name="type_something">Type something...</string>
+    <string name="no_movies_found">No movies found</string>
+    <string name="release_date">Release Date:</string>
+    <string name="status">Status:</string>
+    <string name="review_number">Review\'s number:</string>
+    <string name="cast">Cast</string>
+</resources>

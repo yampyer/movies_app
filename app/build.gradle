@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+
+    androidExtensions {
+        features = ["parcelize"]
+    }
+
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "co.jeanpidev.wifiestamovies"
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'BaseURL', '\"https://dev-candidates.wifiesta.com/\"'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompat"
+    implementation "androidx.core:core-ktx:$rootProject.kotlinCore"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
+    implementation "androidx.preference:preference:$rootProject.preference"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleExtensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleExtensions"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.legacySupport"
+    implementation "com.google.android.material:material:$rootProject.material"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$rootProject.glide_version"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
+
+    // Testing
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.junitExtVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.junitExtVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoCoreVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoCoreVersion"
+    androidTestImplementation "androidx.test:core-ktx:$rootProject.testCoreKtxVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.testRulesVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.mockWebServerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.archCoreTest"
+
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.archCoreTest"
+}
